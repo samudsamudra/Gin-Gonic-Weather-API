@@ -17,3 +17,61 @@
    ```bash
    git clone https://github.com/samudsamudra/Gin-Gonic-Weather-API
    cd gin-gonic-weather-api
+
+
+   Setup database:
+
+Buat database MySQL dengan nama weather_api.
+Jalankan script berikut untuk membuat tabel:
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE favorites (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    location VARCHAR(100) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+Pasang dependensi:
+
+go mod tidy
+Jalankan aplikasi:
+
+go run main.go
+Dokumentasi Endpoint
+Register: Mendaftarkan pengguna baru.
+
+POST /register
+Body:
+{
+  "username": "user1",
+  "password": "password123"
+}
+Login: Login dan mendapatkan token JWT.
+
+POST /login
+Body:
+{
+  "username": "user1",
+  "password": "password123"
+}
+Cuaca: Mendapatkan informasi cuaca.
+
+GET /weather?location=Malang
+Header:
+Authorization: Bearer <jwt-token>
+Lokasi Favorit:
+
+Tambah: POST /favorites Body:
+
+{
+  "location": "Malang"
+}
+Lihat Semua: GET /favorites
+
+
