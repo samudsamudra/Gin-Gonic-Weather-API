@@ -15,5 +15,5 @@
 ## Cara Menjalankan
 1. **Clone repository ini**:
    ```bash
-   git clone https://github.com/username/gin-gonic-weather-api.git
+   git clone https://github.com/samudsamudra/Gin-Gonic-Weather-API
    cd gin-gonic-weather-api
